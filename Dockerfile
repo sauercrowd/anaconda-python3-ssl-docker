@@ -1,8 +1,6 @@
 FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y python3 python3-pip bzip2 openssl
+RUN apt-get update && apt-get install -y bzip2 openssl
 
-RUN pip install bash_kernel
-RUN python -m bash_kernel.install
 
 RUN useradd -m -G users conda
 RUN mkdir /home/conda/ssl
@@ -22,7 +20,12 @@ ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
 
 USER conda
 RUN /bin/bash /anaconda.sh -b
+
+RUN /home/conda/anaconda3/bin/pip install bash_kernel
+RUN /home/conda/anaconda3/bin/python -m bash_kernel.install
+
+RUN echo "export PATH=$PATH:/home/conda/anaconda3/bin" >> /home/conda/.bashrc
+
 EXPOSE 8888
 WORKDIR /home/conda/
-
 CMD ["/home/conda/anaconda3/bin/jupyter","notebook","--certfile=/home/conda/ssl/jupyter.crt","--keyfile=/home/conda/ssl/jupyter.key","--ip=0.0.0.0","--no-browser"]
