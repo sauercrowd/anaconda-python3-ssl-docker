@@ -9,8 +9,8 @@ This image includes a full Anaconda installation and automatically generates SSL
 
 I recommend to mount a folder from the docker host, to be able move data from the container to the host and vice versa.
 
-Note: this image is pretty big, 2 GB
-If you want a smaller image, you might want to take a look at [miniconda-python3-ssl-docker](https://github.com/sauercrowd/miniconda-python3-ssl-docker), which is based on miniconda and therefore got a size of 452 MB
+Note: with 2 GB (on docker hub) this image is pretty big.
+If you want a smaller image, you might want to take a look at [miniconda-python3-ssl-docker](https://github.com/sauercrowd/miniconda-python3-ssl-docker), which is based on miniconda and therefore got a size of 452 MB (on docker hub)
 
 ### Run
 
