@@ -39,19 +39,19 @@ and search for the line
 
 Now either
 
-- copy the whole URL, replace `0.0.0.0` with the docker host IP and follow that link
-- or just copy the token and go to `https://$HOST_IP:8888` and use the token to login 
+- Copy the whole URL, replace `0.0.0.0` with the docker host IP and follow that link
+- Just copy the token, go to `https://$HOST_IP:8888` and use the token to login
 
-both methods will log you in perfectly, but when using the latter method firefox will save the token as a password so you don't need to look it up again
+Both methods will log you in perfectly, but when using the latter method firefox will save the token as a password so you don't need to look it up again
 
 ## Install additional packages
 
-Jupyter Notebooks got a build in terminal, which makes it easy to install additional packages. Just use `pip` and `conda` to install whatever you want.
+Jupyter Notebooks got a buil-in terminal, which makes it easy to install additional packages. Just use `pip` or `conda` to install whatever you want, or grab datasets with `wget`.
 
 ![](pip_conda.gif)
 
 ### Note
-Root access/sudo is disabled for security reasons, so you're not able to install packages via `apt-get`.
+Root access/sudo is disabled for security reasons, which means you're not able to install packages via `apt-get`.
 
 ## TODO
 
