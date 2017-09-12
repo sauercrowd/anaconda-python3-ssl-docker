@@ -17,7 +17,10 @@ RUN chmod +x /entrypoint.sh
 
 USER conda
 RUN /bin/bash /anaconda.sh -b
+
+USER root
 RUN rm /anaconda.sh
+USER conda
 
 RUN echo "export PATH=$PATH:/home/conda/anaconda3/bin" >> /home/conda/.bashrc
 
