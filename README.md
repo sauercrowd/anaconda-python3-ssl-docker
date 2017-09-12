@@ -5,12 +5,18 @@ This image includes a full Anaconda installation and automatically generates SSL
 
 `conda` and `pip` are added to the path, `wget` is installed to grab data from everywhere.
 
+There's also a smaller image available, which is based on miniconda instead of anaconda.
+
+Miniconda is like anaconda, but instead of having a lot of packages preinstalled, only python and conda are present (jupyter will be installed during image building), but all packages which are available in anaconda are available through the `conda` command.
+
+|Installation|Image Size|Link|
+|------------|----------|----|
+|[Anaconda](https://www.anaconda.com/download/)|2GB|https://github.com/sauercrowd/anaconda-python3-ssl-docker|
+|[Miniconda](https://conda.io/miniconda.html)|452MB|https://github.com/sauercrowd/miniconda-python3-ssl-docker|
+
 ## Usage
 
 I recommend to mount a folder from the docker host, to be able move data from the container to the host and vice versa.
-
-Note: with 2 GB (on docker hub) this image is pretty big.
-If you want a smaller image, you might want to take a look at [miniconda-python3-ssl-docker](https://github.com/sauercrowd/miniconda-python3-ssl-docker), which is based on miniconda and therefore got a size of 452 MB (on docker hub)
 
 ### Run
 
