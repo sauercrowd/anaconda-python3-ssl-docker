@@ -20,6 +20,7 @@ ENTRYPOINT ["/usr/bin/tini", "--", "/entrypoint.sh"]
 
 USER conda
 RUN /bin/bash /anaconda.sh -b
+RUN rm /ananconda.sh
 
 RUN /home/conda/anaconda3/bin/pip install bash_kernel
 RUN /home/conda/anaconda3/bin/python -m bash_kernel.install
