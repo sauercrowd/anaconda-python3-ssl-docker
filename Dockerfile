@@ -8,7 +8,7 @@ RUN chown -R conda:users /home/conda/ssl
 ADD 'https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh' /anaconda.sh
 RUN chown conda:users /anaconda.sh
 
-# jupyer kernels which crash otherwise
+# jupyer kernels will crash otherwise
 ENV TINI_VERSION v0.6.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
 RUN chmod +x /usr/bin/tini
