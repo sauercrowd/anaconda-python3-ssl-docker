@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y bzip2 openssl wget
+RUN apt-get update && apt-get install -y bzip2 openssl wget pwgen
 
 RUN useradd -m -G users conda
 RUN mkdir /home/conda/ssl
