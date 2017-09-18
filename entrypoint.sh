@@ -7,9 +7,9 @@ then
 fi
 
 # Generate a token file if it doesn't exist
-if [ ! -f /home/jotten/.jupyter/jupyter_notebook_config.py ]
+if [ ! -f /home/conda/.jupyter/jupyter_notebook_config.py ]
 then
-	mkdir -p /home/jotten/.jupyter
+	mkdir -p /home/conda/.jupyter
 	TOKEN=`pwgen 20 1`
 	echo "c.NotebookApp.token = \'$TOKEN\'" > /home/conda/.jupyter/jupyter_notebook_config.py
 	echo ""
