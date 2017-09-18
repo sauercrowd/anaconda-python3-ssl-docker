@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 # Generate ssl certs if not exist
-if [[ ! -f /home/conda/ssl/jupyter.key && -z ${NO_SSL+x} ]]
+if [[ ! -f /home/conda/ssl/jupyter.key && ${NO_SSL+x} == "" ]]
 then
 	openssl req -x509 -nodes -days 365 -subj "/C=DE/ST=Sauercrowd/L=Sauercrowd/O=Sauercrowd/OU=IT Department/CN=example.com" -newkey rsa:2048 -keyout /home/conda/ssl/jupyter.key -out /home/conda/ssl/jupyter.crt
 fi
 
 # Generate a token file if it doesn't exist
-if [ ! -f /home/conda/.jupyter/jupyter_notebook_config.py ]
+if [[ ! -f /home/conda/.jupyter/jupyter_notebook_config.py ]]
 then
 	mkdir -p /home/conda/.jupyter
 	TOKEN=`pwgen 20 1`
