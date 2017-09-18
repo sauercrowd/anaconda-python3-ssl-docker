@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jupyter-notebook
+  namespace: jonas
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: jupyter-notebok
+        app: jupyter-notebook
+    spec:
+      containers:
+      - name: jupyter-notebook
+        image: index.docker.io/jonadev95/anaconda-python3-ssl-docker
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8888
+
+          #      volumeMounts:
+          #- mountPath: /home/conda/workspace
+          # name: workspace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jupyter-notebook
+  namespace: jonas
+spec:
+  ports:
+  - port: 80
+    targetPort: 8888
+    nodePort: 30061
+  selector:
+    app: jupyter-notebook
+  type: NodePort
