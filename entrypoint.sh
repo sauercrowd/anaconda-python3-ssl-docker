@@ -10,7 +10,7 @@ fi
 if [[ ! -f /home/conda/.jupyter/jupyter_notebook_config.py ]]
 then
 	mkdir -p /home/conda/.jupyter
-	TOKEN=`pwgen 20 1`
+	TOKEN=`pwgen 50 1`
 	echo "c.NotebookApp.token = '$TOKEN'" > /home/conda/.jupyter/jupyter_notebook_config.py
 	echo ""
 	echo "[JUPYTER NOTEBOOK TOKEN] $TOKEN"
