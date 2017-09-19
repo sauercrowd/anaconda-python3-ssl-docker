@@ -1,3 +1,32 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  namespace: jonas
+  name: jupyter-workspace
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/kubernetes/data/jupyter-notebook/workspace"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  namespace: jonas
+  name: jupyter-workspace-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -11,16 +40,22 @@ spec:
         task: jupyter-notebok
         app: jupyter-notebook
     spec:
+      volumes:
+        - name: jupyter-workspace
+          persistentVolumeClaim:
+           claimName: jupyter-workspace-claim
       containers:
-      - name: jupyter-notebook
-        image: index.docker.io/jonadev95/anaconda-python3-ssl-docker
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8888
-
-          #      volumeMounts:
-          #- mountPath: /home/conda/workspace
-          # name: workspace
+        - name: jupyter-notebook
+          image: index.docker.io/jonadev95/anaconda-python3-ssl-docker
+          imagePullPolicy: Always
+          env:
+          - name: NO_SSL
+            value: "yes"
+          ports:
+          - containerPort: 8888
+          volumeMounts:
+          - mountPath: /home/conda/workspace
+            name: jupyter-workspace
 ---
 apiVersion: v1
 kind: Service
@@ -31,7 +66,7 @@ spec:
   ports:
   - port: 80
     targetPort: 8888
-    nodePort: 30061
   selector:
     app: jupyter-notebook
-  type: NodePort
+---
+
