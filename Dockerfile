@@ -1,9 +1,8 @@
 FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y bzip2 openssl wget pwgen
+RUN apt-get update && apt-get install -y bzip2 openssl wget pwgen git
 
 RUN useradd -m -G users conda
-RUN mkdir /home/conda/ssl
-RUN chown -R conda:users /home/conda/ssl
+RUN chsh -s /bin/bash conda
 ADD 'https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh' /anaconda.sh
 RUN chown conda:users /anaconda.sh
 
