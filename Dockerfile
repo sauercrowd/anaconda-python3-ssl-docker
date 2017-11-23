@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y bzip2 openssl wget pwgen git
+RUN apt-get update && apt-get install -y bzip2 openssl wget pwgen git r-recommended 
 
 RUN useradd -m -G users conda
 RUN chsh -s /bin/bash conda
